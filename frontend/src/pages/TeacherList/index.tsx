@@ -27,6 +27,12 @@ function TeacherList() {
             }
         });
 
+        const p = document.getElementById("not-found") as HTMLElement;
+
+        if (res.data.length)
+            p.style.visibility = 'hidden';
+        else
+            p.style.visibility = 'visible';
         setTeachers(res.data);
     }
 
@@ -86,8 +92,9 @@ function TeacherList() {
 
             <main>
                 {teachers.map((teacher: Teacher) => {
-                    return <TeacherItem key={teacher.id} teacher={teacher} />
-                })}
+                    return <TeacherItem key={teacher.id} teacher={teacher} /> })
+                }
+                <p id="not-found">Nenhum professor encontrado com sua pesquisa.</p>
             </main>
         </div>
     )

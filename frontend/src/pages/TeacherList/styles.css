@@ -28,13 +28,20 @@
     margin-top: 3.2rem;
 }
 
-#page-teacher-form button:hover {
+#search-teachers button:hover {
     background: var(--color-secundary-dark);
 }
 
 #page-teacher-list main {
     margin: 3.2rem auto;
     width: 90%;
+}
+
+#not-found {
+    display: flex;
+    justify-content: center;
+    margin-top: 18rem;
+    visibility: hidden;
 }
 
 @media (min-width: 700px) {
@@ -56,8 +63,13 @@
     }
 
     #page-teacher-list main {
-        padding: 3.4rem 0;
+        padding: 3.2rem 0;
         max-width: 740px;
         margin: 0 auto;
+    }
+
+    #teacher-list header,
+    #teacher-list footer {
+        padding: 3.2rem;
     }
 }
