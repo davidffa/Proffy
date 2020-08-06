@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
@@ -16,6 +16,11 @@ function TeacherList() {
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
 
+    useEffect(() => {
+        api.get('classes')
+            .then(res => setTeachers(res.data));
+    }, []);
+
     async function searchTeachers(e: FormEvent) {
         e.preventDefault();
 
@@ -27,12 +32,6 @@ function TeacherList() {
             }
         });
 
-        const p = document.getElementById("not-found") as HTMLElement;
-
-        if (res.data.length)
-            p.style.visibility = 'hidden';
-        else
-            p.style.visibility = 'visible';
         setTeachers(res.data);
     }
 
@@ -91,10 +90,11 @@ function TeacherList() {
             </PageHeader>
 
             <main>
-                {teachers.map((teacher: Teacher) => {
-                    return <TeacherItem key={teacher.id} teacher={teacher} /> })
+                {teachers.length ? teachers.map((teacher: Teacher) => {
+                    return <TeacherItem key={teacher.id} teacher={teacher} /> }) :
+                    <p id="not-found">Nenhum professor encontrado <br /> com sua pesquisa.</p>
                 }
-                <p id="not-found">Nenhum professor encontrado com sua pesquisa.</p>
+                
             </main>
         </div>
     )

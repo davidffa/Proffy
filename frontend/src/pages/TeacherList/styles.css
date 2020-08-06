@@ -40,8 +40,8 @@
 #not-found {
     display: flex;
     justify-content: center;
-    margin-top: 18rem;
-    visibility: hidden;
+    text-align: center;
+    margin-top: 12rem;
 }
 
 @media (min-width: 700px) {
