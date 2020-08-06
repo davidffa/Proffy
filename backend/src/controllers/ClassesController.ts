@@ -13,6 +13,13 @@ export default class ClassesController {
     async index(req: Request, res: Response) {
         const filters = req.query;
 
+        if (!filters.week_day || !filters.subject || !filters.time) {
+            const allClasses = await db('classes')  
+                .join('users', 'classes.user_id', '=', 'users.id')
+                .select(['classes.*', 'users.*']);
+            return res.json(allClasses);
+        }
+
         const subject = filters.subject as string;
         const week_day = filters.week_day as string;
         const time = filters.time as string;
