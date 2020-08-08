@@ -3,5 +3,5 @@ node_modules
 
 *.sqlite
 
-avatars/*
-!avatars/.gitkeep
+uploads/*
+!uploads/.gitkeep
