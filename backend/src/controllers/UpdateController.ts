@@ -77,11 +77,11 @@ export default class UpdateController {
                 avatar,
             });
 
-            const classExists = await trx('classes').where('subject', '=', subject);
+            const classExists = await trx('classes').where('subject', subject).first();
             let classesIds;
 
-            if (classExists.length) {
-                classesIds = await trx('classes').update({
+            if (classExists) {
+                classesIds = await trx('classes').where('subject', subject).update({
                     subject,
                     cost,
                     user_id,
@@ -118,7 +118,7 @@ export default class UpdateController {
             if (avatar) {
                 fs.unlinkSync(path.resolve(__dirname, '..', '..', 'uploads', avatar));
             }
-            console.log(err, typeof schedule);
+            
             res.status(400).send({ error: 'Error while updating data' });
         }
 

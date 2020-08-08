@@ -45,54 +45,75 @@ export default class ClassesController {
     async create(req: Request, res: Response) {
         const {
             name,
-            avatar,
+            surname,
+            email,
             whatsapp,
             bio,
             subject,
             cost,
             schedule
         } = req.body;
-    
+
+        const user_id = req.userId;
+
+        //console.log({ name, surname, email, whatsapp, bio, subject, cost, schedule, user_id, avatar})
+
+        const user = await db('users').where('id', user_id).first();
+
+        if (!user) {
+            return res.status(400).send({ error: 'User not found' });
+        }
+
         const trx = await db.transaction();
-    
+
         try {
-            const insertedUsersIds = await trx('users').insert({
+            await trx('users').where('id', user_id).update({
                 name,
-                avatar,
+                surname,
+                email,
                 whatsapp,
-                bio 
-             });
+                bio,
+            });
+
+            const classExists = await trx('classes').where('subject', subject).first();
+            let classesIds;
+
+            if (classExists) {
+                classesIds = await trx('classes').where('subject', subject).update({
+                    subject,
+                    cost,
+                    user_id,
+               });  
+            }else {
+                classesIds = await trx('classes').insert({
+                    subject,
+                    cost,
+                    user_id,
+               });
+               classesIds = classesIds[0];
+            }
+
+            const class_id = classesIds;
+
+            const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
+                return {
+                    class_id,
+                    week_day: scheduleItem.week_day,
+                    from: convertHourToMinutes(scheduleItem.from),
+                    to: convertHourToMinutes(scheduleItem.to),
+                };
+            });
+
+            await trx('class_schedule').where('class_id', '=', class_id).delete();
+            await trx('class_schedule').insert(classSchedule);
          
-             const user_id = insertedUsersIds[0];
-         
-             const insertedClassesIds = await trx('classes').insert({
-                 subject,
-                 cost,
-                 user_id,
-             });
-         
-             const class_id = insertedClassesIds[0];
-         
-             const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
-                 return {
-                     class_id,
-                     week_day: scheduleItem.week_day,
-                     from: convertHourToMinutes(scheduleItem.from),
-                     to: convertHourToMinutes(scheduleItem.to),
-                 };
-             });
-         
-             await trx('class_schedule').insert(classSchedule);
-         
-             await trx.commit();
-             
-             return res.status(201).send();
-        } catch (err) {
+            await trx.commit();
+
+            res.send();
+        }catch (err) {
             await trx.rollback();
-    
-            return res.status(400).json({
-                error: 'Unexpected error while creating new class'
-            })
+
+            res.status(400).send({ error: 'Error while creating class' });
         }
     }
 }
