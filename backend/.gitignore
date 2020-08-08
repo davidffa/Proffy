@@ -1,3 +1,7 @@
 node_modules
-*.sqlite
 .env
+
+*.sqlite
+
+avatars/*
+!avatars/.gitkeep
