@@ -58,15 +58,27 @@ export default class UpdateController {
                 bio,
                 avatar,
             });
-         
-            const classesIds = await trx('classes').insert({
-                 subject,
-                 cost,
-                 user_id,
-            });
 
-            const class_id = classesIds[0];
-         
+            const classExists = await trx('classes').where('subject', '=', subject);
+            let classesIds;
+
+            if (classExists.length) {
+                classesIds = await trx('classes').update({
+                    subject,
+                    cost,
+                    user_id,
+               });  
+            }else {
+                classesIds = await trx('classes').insert({
+                    subject,
+                    cost,
+                    user_id,
+               });
+               classesIds = classesIds[0];
+            }
+
+            const class_id = classesIds;
+
             const classSchedule = schedule.map((scheduleItem: ScheduleItem) => {
                 return {
                     class_id,
@@ -75,9 +87,10 @@ export default class UpdateController {
                     to: convertHourToMinutes(scheduleItem.to),
                 };
             });
-         
-            await trx('class_schedule').insert(classSchedule);
 
+            await trx('class_schedule').where('class_id', '=', class_id).delete();
+            await trx('class_schedule').insert(classSchedule);
+         
             await trx.commit();
 
             res.send();
