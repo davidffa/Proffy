@@ -33,5 +33,6 @@ routes.post('/forgot_password', recoveryController.recover);
 routes.post('/reset_password', recoveryController.reset);
 
 routes.post('/update', auth, upload.single('avatar'), updateController.update);
+routes.get('/update', auth, updateController.show);
 
 export default routes;
