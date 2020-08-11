@@ -12,7 +12,7 @@ import api from '../../services/api';
 
 import './styles.css';
 
-function Landing() {
+function Home() {
     const [totalConnections, setTotalConnections] = useState(0);
 
     useEffect(() => {
@@ -57,4 +57,4 @@ function Landing() {
     );
 }
 
-export default Landing;
+export default Home;
