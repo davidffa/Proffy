@@ -8,6 +8,8 @@ import api from '../../services/api';
 import purpleHeart from '../../assets/images/icons/purple-heart.svg';
 import eye from '../../assets/images/icons/eye.svg';
 import eyeDivided from '../../assets/images/icons/eye-divided.svg';
+import checkbox from '../../assets/images/icons/checkbox.svg';
+import square from '../../assets/images/icons/square.svg';
 
 import './styles.css';
 
@@ -129,13 +131,18 @@ function Login() {
                         </div>
                         
                         <div className="form-footer">
-                            <input 
-                                type="checkbox" 
-                                className="checkbox"
-                                onClick={e => setRemember(!remember)}
-                            />
-                            <label>Lembrar-me</label>
-
+                            <label onClick={e => setRemember(!remember)}>
+                                {!remember 
+                                    ? (
+                                        <img src={square} alt="Checkbox" />
+                                    )
+                                    : (
+                                        <img src={checkbox} alt="Checkbox" />
+                                    )
+                                }
+                                <span>Lembrar-me</span>
+                            </label>
+                            
                             <Link className="forgot-password" to="forgotpassword">Esqueci minha senha</Link>
                         </div>
                     </fieldset>
