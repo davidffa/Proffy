@@ -77,9 +77,15 @@
     background-color: #FFF;
 }
 
-.login-form fieldset .password img {
+.login-form fieldset .password .eye {
     margin-left: 2rem;
     height: 2rem;
+    cursor: pointer;
+}
+
+.login-form fieldset .password .eyeDivided {
+    margin-left: 1.8rem;
+    height: 3rem;
     cursor: pointer;
 }
 
@@ -117,7 +123,7 @@
     margin-top: 5rem;
     background-color: #DCDCE5;
     height: 5.8rem;
-    cursor: pointer;
+    cursor: not-allowed;
     border: 0;
     border-radius: 1rem;
     outline: 0;
