@@ -53,6 +53,20 @@ function Login() {
             });
 
             console.log(res.data);
+            
+            if (remember) {
+                try {
+                    localStorage.setItem('token', res.data.token);
+                } catch(err) {
+                    alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
+                } 
+            }else {
+                try {
+                    sessionStorage.setItem('token', res.data.token);
+                } catch(err) {
+                    alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
+                } 
+            }
         }catch (err) {
             alert('Email ou password incorretos!');
         }
