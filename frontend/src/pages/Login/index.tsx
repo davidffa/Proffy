@@ -1,9 +1,10 @@
 import React, { FormEvent, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import SideImage from '../../components/SideImage';
+
 import api from '../../services/api';
 
-import bgImage from '../../assets/images/background-image.svg';
 import purpleHeart from '../../assets/images/icons/purple-heart.svg';
 import eye from '../../assets/images/icons/eye.svg';
 import eyeDivided from '../../assets/images/icons/eye-divided.svg';
@@ -74,9 +75,7 @@ function Login() {
 
     return (
         <div id="login-container">
-            <div className="img-container">
-                <img src={bgImage} alt="Proffy" className="bg-image" />
-            </div>
+            <SideImage />
             
             <div className="form-container">
                 <form className="login-form" onSubmit={handleLogin}>

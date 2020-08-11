@@ -10,18 +10,6 @@
     background-color: var(--color-background);
 }
 
-.img-container {
-    background-color: var(--color-primary);
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.bg-image {
-    max-width: 100%;
-}
-
 .form-container {
     margin-top: 7rem;
 }
