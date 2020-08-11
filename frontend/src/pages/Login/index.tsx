@@ -83,47 +83,50 @@ function Login() {
                     <fieldset>
                         <legend>Fazer login</legend>
 
-                        <input 
-                            type="email" 
-                            placeholder="E-mail" 
-                            className="email-input"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            required
-                            autoComplete="on"
-                        />
-                        
-                        <div className="password">
-                            <input 
-                                type="password" 
-                                placeholder="Senha" 
-                                className="password-input"
-                                id="password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                required
-                                minLength={8}
-                            />
-
-                            {!visiblePassword 
-                                ? (
-                                    <img 
-                                        src={eye} 
-                                        alt="Mostrar"
-                                        className="eye"
-                                        onClick={e => setVisiblePassword(true)}
-                                    />
-                                )
-                                : (
-                                    <img 
-                                        src={eyeDivided} 
-                                        alt="Esconder"
-                                        className="eyeDivided"
-                                        onClick={e => setVisiblePassword(false)}
-                                    />
-                                )
-                            }
+                        <div className="login-input-block">
+                            <div className="email">
+                                <input 
+                                    type="email" 
+                                    placeholder="E-mail" 
+                                    className="email-input"
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
                             
+                            <div className="password">
+                                <input 
+                                    type="password" 
+                                    placeholder="Senha" 
+                                    className="password-input"
+                                    id="password"
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}
+                                    required
+                                    minLength={8}
+                                />
+
+                                {!visiblePassword 
+                                    ? (
+                                        <img 
+                                            src={eye} 
+                                            alt="Mostrar"
+                                            className="eye"
+                                            onClick={e => setVisiblePassword(true)}
+                                        />
+                                    )
+                                    : (
+                                        <img 
+                                            src={eyeDivided} 
+                                            alt="Esconder"
+                                            className="eyeDivided"
+                                            onClick={e => setVisiblePassword(false)}
+                                        />
+                                    )
+                                }
+                                
+                            </div>
                         </div>
                         
                         <div className="form-footer">

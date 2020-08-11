@@ -97,6 +97,29 @@
     padding: 0 1.6rem;
 }
 
+.login-form fieldset .login-input-block {
+    position: relative;
+}
+
+.login-form fieldset .login-input-block .email:focus-within::after {
+    height: calc(5.5rem);
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    left: 0;
+    top: 1rem;
+}
+
+.login-form fieldset .login-input-block .password:focus-within::after {
+    height: calc(5.5rem);
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    left: 0;
+}
+
 .login-form fieldset .form-footer {
     margin-top: 2.3rem;
     display: flex;
@@ -142,10 +165,12 @@
 
 .form-container footer a {
     color: var(--color-primary);
+    font-weight: bold;
 }
 
 .form-container footer a:visited {
     color: var(--color-primary);
+    font-weight: bold;
 }
 
 .form-container footer .free-text {
