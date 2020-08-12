@@ -1,5 +1,5 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import SideImage from '../../components/SideImage';
 
@@ -14,6 +14,8 @@ import square from '../../assets/images/icons/square.svg';
 import './styles.css';
 
 function Login() {
+    const history = useHistory();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
@@ -60,12 +62,14 @@ function Login() {
             if (remember) {
                 try {
                     localStorage.setItem('token', res.data.token);
+                    history.push('/home');
                 } catch(err) {
                     alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
                 } 
             }else {
                 try {
                     sessionStorage.setItem('token', res.data.token);
+                    history.push('/home');
                 } catch(err) {
                     alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
                 } 
