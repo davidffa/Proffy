@@ -1,0 +1,90 @@
+#forgot-password-container {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    background-color: var(--color-background);
+
+    /* Prevent user from selecting text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#forgot-password-container .form-container {
+    flex-direction: column;
+}
+
+#forgot-password-container .form-container img {
+    margin-top: -4rem;
+    margin-bottom: 10rem;
+}
+
+.forgot-password-form legend {
+    font-size: 3rem;
+    color: var(--color-text-title);
+    font-weight: bold;
+}
+
+.forgot-password-form fieldset {
+    margin-top: 5rem;
+    outline: 0;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.forgot-password-form fieldset input {
+    width: 36.5rem;
+    height: 7.5rem;
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    margin-top: 0;
+    padding: 0 1.6rem;
+    border-radius: 0.8rem;
+}
+
+.forgot-password-form button {
+    margin-top: 2rem;
+
+    background-color: #DCDCE5;
+    border: 0;
+    outline: 0;
+    border-radius: 0.8rem;
+    
+    cursor: not-allowed;
+    height: 5.8rem;
+    width: 100%;
+
+    font-weight: bold;
+}
+
+@media(min-width: 768px) { 
+    #forgot-password-container {
+        flex-direction: row;
+    }
+    
+    #forgot-password-container .form-container {
+        width: 50vw;
+        height: 100vh;
+
+        margin-top: -10rem;
+
+        display: flex;
+        
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    #forgot-password-container .form-container img {
+        margin-top: -25rem;
+        margin-bottom: 25rem;
+    }
+}
