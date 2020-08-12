@@ -121,7 +121,7 @@
 #register-container #overlay h1 {
     margin-top: 2rem;
     color: #FFF;
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 #register-container #overlay h5 {
@@ -174,4 +174,10 @@
     .img-container {
         margin-top: 0;
     }   
+
+    #register-container #overlay h1 {
+        margin-top: 5rem;
+        color: #FFF;
+        font-size: 3rem;
+    }
 }
