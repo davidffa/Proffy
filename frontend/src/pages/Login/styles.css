@@ -58,41 +58,6 @@
     padding: 0 1.6rem;
 }
 
-.login-form fieldset .password {
-    border: 1px solid var(--color-line-in-white);
-    outline: 0;
-    margin-top: 0;
-    border-top: none;
-    border-bottom-left-radius: 0.8rem;
-    border-bottom-right-radius: 0.8rem;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    background-color: #FFF;
-}
-
-.login-form fieldset .password .eye {
-    margin-left: 2rem;
-    height: 2rem;
-    cursor: pointer;
-}
-
-.login-form fieldset .password .eyeDivided {
-    margin-left: 1.8rem;
-    height: 3rem;
-    cursor: pointer;
-}
-
-.login-form fieldset .password-input {
-    width: 29.2rem;
-    height: 7.5rem;
-    outline: 0;
-    border: 0;
-    padding: 0 1.6rem;
-}
-
 .login-form fieldset .login-input-block {
     position: relative;
 }
@@ -105,15 +70,6 @@
     position: absolute;
     left: 0;
     top: 1rem;
-}
-
-.login-form fieldset .login-input-block .password:focus-within::after {
-    height: 5.5rem;
-    width: 2px;
-    content: '';
-    background: var(--color-primary-light);
-    position: absolute;
-    left: 0;
 }
 
 .login-form fieldset .form-footer {

@@ -2,12 +2,11 @@ import React, { FormEvent, useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import SideImage from '../../components/SideImage';
+import PasswordInput from '../../components/PasswordInput';
 
 import api from '../../services/api';
 
 import purpleHeart from '../../assets/images/icons/purple-heart.svg';
-import eye from '../../assets/images/icons/eye.svg';
-import eyeDivided from '../../assets/images/icons/eye-divided.svg';
 import checkbox from '../../assets/images/icons/checkbox.svg';
 import square from '../../assets/images/icons/square.svg';
 
@@ -19,7 +18,6 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
-    const [visiblePassword, setVisiblePassword] = useState(false);
 
     useEffect(() => {
         const button = document.getElementById('submit-button');
@@ -38,16 +36,6 @@ function Login() {
         }
     }, [email, password]);
 
-    useEffect(() => {
-        const password = document.getElementById('password') as HTMLInputElement;
-
-        if (visiblePassword) {
-            password.type = 'text';
-        }else {
-            password.type = 'password';
-        }
-    }, [visiblePassword]);
-
     async function handleLogin(e: FormEvent) {
         e.preventDefault();
 
@@ -56,8 +44,6 @@ function Login() {
                 email,
                 password
             });
-
-            console.log(res.data);
             
             if (remember) {
                 try {
@@ -100,38 +86,10 @@ function Login() {
                                 />
                             </div>
                             
-                            <div className="password">
-                                <input 
-                                    type="password" 
-                                    placeholder="Senha" 
-                                    className="password-input"
-                                    id="password"
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                    required
-                                    minLength={8}
-                                />
-
-                                {!visiblePassword 
-                                    ? (
-                                        <img 
-                                            src={eye} 
-                                            alt="Mostrar"
-                                            className="eye"
-                                            onClick={e => setVisiblePassword(true)}
-                                        />
-                                    )
-                                    : (
-                                        <img 
-                                            src={eyeDivided} 
-                                            alt="Esconder"
-                                            className="eyeDivided"
-                                            onClick={e => setVisiblePassword(false)}
-                                        />
-                                    )
-                                }
-                                
-                            </div>
+                            <PasswordInput
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
                         </div>
                         
                         <div className="form-footer">
