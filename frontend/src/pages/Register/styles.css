@@ -21,8 +21,13 @@
 }
 
 #register-container .back {
-    margin-top: -2rem;
+    margin-top: -8rem;
+    margin-right: 31rem;
     cursor: pointer;
+}
+
+.register-form-container {
+    flex-direction: column;
 }
 
 .register-form {
@@ -31,7 +36,7 @@
 }
 
 .register-form legend {
-    margin-top: 8rem;
+    margin-top: 15rem;
     font-weight: bold;
     font-size: 4rem;
     color: var(--color-text-title);
@@ -152,11 +157,6 @@
         flex-direction: row;
 
         margin-top: 0;
-    }
-
-    #register-container .back {
-        margin-bottom: 78rem;
-        margin-left: -15rem;
     }
 
     .register-form-container {
