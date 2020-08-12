@@ -1,0 +1,129 @@
+#register-container {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    background-color: var(--color-background);
+
+    /* Prevent user from selecting text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    margin-top: 10rem;
+}
+
+#register-container .back {
+    margin-top: -2rem;
+    cursor: pointer;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form legend {
+    margin-top: 8rem;
+    font-weight: bold;
+    font-size: 4rem;
+    color: var(--color-text-title);
+}
+
+.register-form h5 {
+    margin-top: 1rem;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
+
+.register-form fieldset {
+    margin-top: 4rem;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.register-form fieldset .email-input {
+    width: 36.5rem;
+    height: 7.5rem;
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    margin-top: 0;
+    padding: 0 1.6rem;
+}
+
+.register-form fieldset .surname-input {
+    width: 36.5rem;
+    height: 7.5rem;
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    margin-top: 0;
+    padding: 0 1.6rem;
+}
+
+.register-form fieldset .name-input {
+    width: 36.5rem;
+    height: 7.5rem;
+    border: 1px solid var(--color-line-in-white);
+    outline: 0;
+    margin-top: 0;
+    padding: 0 1.6rem;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+}
+
+.register-form button {
+    background-color: var(--color-secundary);
+    height: 5.8rem;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    color: #FFF;
+    border-radius: 0.8rem;
+    margin-top: 5rem;
+    transition: 0.2s;
+}
+
+.register-form button:hover {
+    background-color: var(--color-secundary-dark);
+}
+
+.img-container {
+    margin-top: 6rem;
+}
+
+@media(min-width: 768px) { 
+    #register-container {
+        flex-direction: row;
+
+        margin-top: 0;
+    }
+
+    #register-container .back {
+        margin-bottom: 78rem;
+        margin-left: -15rem;
+    }
+
+    .register-form-container {
+        width: 50vw;
+        height: 100vh;
+
+        margin-top: -10rem;
+
+        display: flex;
+        
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img-container {
+        margin-top: 0;
+    }   
+}
