@@ -92,13 +92,15 @@ function ForgotPassword() {
                     <legend>Esqueceu sua senha?</legend>
                     <span>Não se preocupe, vamos resolver isso.</span>
                     <fieldset>
-                        <input 
-                            type="email"
-                            placeholder="E-mail"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            required
-                        />
+                        <div className="email-input-block">
+                            <input 
+                                type="email"
+                                placeholder="E-mail"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
                     </fieldset>
 
                     <button type="submit" id="sendbutton" onMouseOver={buttonHover} onMouseOut={removeHover}>Enviar</button>

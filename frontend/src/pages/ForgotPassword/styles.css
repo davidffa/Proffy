@@ -40,6 +40,17 @@
     border: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.forgot-password-form fieldset .email-input-block:focus-within::after {
+    height: 5.5rem;
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    top: 1rem;
+    left: 0;    
 }
 
 .forgot-password-form fieldset input {
