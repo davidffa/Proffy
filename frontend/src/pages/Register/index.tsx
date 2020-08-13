@@ -65,38 +65,47 @@ function Register() {
                     <h5>Preencha os dados abaixo <br /> para começar.</h5>
 
                     <fieldset>
-                        <input
-                            type="text"
-                            placeholder="Nome"
-                            className="name-input"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            required
-                        />
+                        <div className="name-input-block">
+                            <input
+                                type="text"
+                                placeholder="Nome"
+                                className="name-input"
+                                value={name}
+                                onChange={e => setName(e.target.value)}
+                                required
+                                maxLength={20}
+                            />
+                        </div>
 
-                        <input
-                            type="text"
-                            placeholder="Sobrenome"
-                            className="surname-input"
-                            value={surname}
-                            onChange={e => setSurname(e.target.value)}
-                            required
-                        />
+                        <div className="surname-input-block">
+                            <input
+                                type="text"
+                                placeholder="Sobrenome"
+                                className="surname-input"
+                                value={surname}
+                                onChange={e => setSurname(e.target.value)}
+                                required
+                                maxLength={20}
+                            />
+                        </div>
 
-                        <input
-                            type="email"
-                            placeholder="E-mail"
-                            className="email-input"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            required
-                        />
+                        <div className="email-input-block">
+                            <input
+                                type="email"
+                                placeholder="E-mail"
+                                className="email-input"
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
                         
-                        <PasswordInput
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                        
+                        <div className="password-input-block">
+                            <PasswordInput
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </div>
                     </fieldset>
 
                     <button type="submit">Concluir Registo</button>

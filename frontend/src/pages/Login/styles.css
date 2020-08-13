@@ -72,6 +72,15 @@
     top: 1rem;
 }
 
+.login-form fieldset .login-input-block .password:focus-within::after {
+    height: 5.5rem;
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    left: 0;
+}
+
 .login-form fieldset .form-footer {
     margin-top: 2.3rem;
     display: flex;

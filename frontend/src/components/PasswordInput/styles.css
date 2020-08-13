@@ -32,12 +32,3 @@
     border: 0;
     padding: 0 1.6rem;
 }
-
-.login-form fieldset .login-input-block .password:focus-within::after {
-    height: 5.5rem;
-    width: 2px;
-    content: '';
-    background: var(--color-primary-light);
-    position: absolute;
-    left: 0;
-}

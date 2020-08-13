@@ -53,6 +53,8 @@
     border: 0;
     display: flex;
     flex-direction: column;
+
+    position: relative;
 }
 
 .register-form fieldset .email-input {
@@ -64,6 +66,16 @@
     padding: 0 1.6rem;
 }
 
+.register-form fieldset .email-input-block:focus-within::after {
+    height: 5.5rem;
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    top: 16rem;
+    left: 0;
+}
+
 .register-form fieldset .surname-input {
     width: 36.5rem;
     height: 7.5rem;
@@ -71,6 +83,16 @@
     outline: 0;
     margin-top: 0;
     padding: 0 1.6rem;
+}
+
+.register-form fieldset .surname-input-block:focus-within::after {
+    height: 5.5rem;
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    top: 8.5rem;
+    left: 0;
 }
 
 .register-form fieldset .name-input {
@@ -82,6 +104,26 @@
     padding: 0 1.6rem;
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
+}
+
+.register-form fieldset .name-input-block:focus-within::after {
+    height: 5.5rem;
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    top: 1rem;
+    left: 0;
+}
+
+.register-form fieldset .password-input-block:focus-within::after {
+    height: 5.5rem;
+    width: 2px;
+    content: '';
+    background: var(--color-primary-light);
+    position: absolute;
+    top: 23.3rem;
+    left: 0;
 }
 
 .register-form button {
