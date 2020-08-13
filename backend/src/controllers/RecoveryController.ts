@@ -43,13 +43,13 @@ export default class RecoveryController {
     }
 
     async reset(req: Request, res: Response) {
-        let { email, token, password } = req.body;
+        let { token, password } = req.body;
 
         try {
-            const user = await db('users').where('email', '=', email).first();
+            const user = await db('users').where('passwordResetToken', '=', token).first();
 
             if (!user)
-                return res.status(400).send({ error: 'User not found' });
+                return res.status(400).send({ error: 'Invalid token' });
 
             if (token !== user.passwordResetToken) 
                 return res.status(400).send({ error: 'Invalid token' });
@@ -61,7 +61,7 @@ export default class RecoveryController {
 
             password = await bcrypt.hash(password, 10);
 
-            await db('users').where('email', '=', email).update({
+            await db('users').where('passwordResetToken', '=', token).update({
                 password,
                 passwordResetToken: null,
                 passwordResetExpires: null
