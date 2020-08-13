@@ -4,9 +4,11 @@ import { useLocation, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import SideImage from '../../components/SideImage';
+import PasswordInput from '../../components/PasswordInput';
+
+import check from '../../assets/images/icons/check.svg';
 
 import './styles.css';
-import PasswordInput from '../../components/PasswordInput';
 
 function ResetPassword() {
     const history = useHistory();
@@ -47,6 +49,10 @@ function ResetPassword() {
                 token,
                 password
             });
+
+            const overlay = document.getElementById("overlay");
+            if (overlay)
+                overlay.style.height = "100%";
         }catch (err) {
             alert('Token inválido! Obtenha um novo');
             history.push('/forgotpassword');
@@ -73,9 +79,21 @@ function ResetPassword() {
         }   
     }
 
+    function goLogin() {
+        history.push('/');
+    }
+
     return (
         <div id="reset-password-container">
             <SideImage />
+            <div id="overlay">
+                <img src={check} alt="Check"/>
+                <h1>Password redefinida</h1>
+
+                <h5>Boa, sua password foi redefinida <br /> agora tente não se esquecer dela de novo :)</h5>
+
+                <button onClick={goLogin}>Voltar ao login</button>
+            </div>
 
             <div className="reset-password-form-container">
                 <form onSubmit={handleChangePassword} className="reset-password-form">
