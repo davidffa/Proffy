@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FormEvent } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
@@ -22,16 +22,55 @@ function ResetPassword() {
             history.push('/');
         }
     }, [search, history]);
+    
+    useEffect(() => {
+        const button = document.getElementById('button');
 
-    async function handleChangePassword() {
+        if (!button) return;
+
+        if (password.length >= 8) {
+            button.style.cursor = 'pointer';
+            button.style.backgroundColor = '#04D361'
+            button.style.color = '#FFF';
+        }else {
+            button.style.cursor = 'not-allowed';
+            button.style.backgroundColor = '#DCDCE5';
+            button.style.color = '#9C98A6';
+        }
+    }, [password]);
+
+    async function handleChangePassword(e: FormEvent) {
+        e.preventDefault();
+
         try {
             await api.post('reset_password', {
                 token,
                 password
             });
         }catch (err) {
-            alert('Token inválido!');
+            alert('Token inválido! Obtenha um novo');
+            history.push('/forgotpassword');
         }
+    }
+
+    function buttonHover() {
+        const button = document.getElementById('button');
+
+        if (!button) return;
+
+        if (password.length >= 8) {
+            button.style.backgroundColor = '#04BF58'
+        }
+    }
+
+    function removeHover() {
+        const button = document.getElementById('button');
+
+        if (!button) return;
+
+        if (password.length >= 8) {
+            button.style.backgroundColor = '#04D361'
+        }   
     }
 
     return (
@@ -43,10 +82,13 @@ function ResetPassword() {
                     <legend>Escolha uma nova password.</legend>
 
                     <fieldset>
-                        <PasswordInput />
+                        <PasswordInput
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
                     </fieldset>
 
-                    <button type="submit">Alterar Senha</button>
+                    <button id="button" type="submit" onMouseOver={buttonHover} onMouseOut={removeHover}>Alterar Senha</button>
                 </form>
             </div>
         </div>
