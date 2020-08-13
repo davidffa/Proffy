@@ -117,6 +117,8 @@
     outline: 0;
     font-weight: bold;
     color: var(--color-text-complement);
+
+    transition: 0.2s;
 }
 
 .form-container footer {

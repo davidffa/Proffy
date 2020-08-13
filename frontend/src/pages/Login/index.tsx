@@ -23,7 +23,7 @@ function Login() {
         const button = document.getElementById('submit-button');
         if (!button) return;
 
-        let regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (regExEmail.test(email) && password.length >= 8) {
             button.style.cursor = 'pointer';
@@ -35,6 +35,28 @@ function Login() {
             button.style.color = '#9C98A6';
         }
     }, [email, password]);
+
+    const regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    function buttonHover() {
+        const button = document.getElementById('submit-button');
+
+        if (!button) return;
+
+        if (regExEmail.test(email)) {
+            button.style.backgroundColor = '#04BF58'
+        }
+    }
+
+    function removeHover() {
+        const button = document.getElementById('submit-button');
+
+        if (!button) return;
+
+        if (regExEmail.test(email)) {
+            button.style.backgroundColor = '#04D361'
+        }   
+    }
 
     async function handleLogin(e: FormEvent) {
         e.preventDefault();
@@ -109,7 +131,7 @@ function Login() {
                         </div>
                     </fieldset>
 
-                    <button id="submit-button" type="submit">Entrar</button>
+                    <button id="submit-button" type="submit" onMouseOver={buttonHover} onMouseOut={removeHover}>Entrar</button>
                 </form>
 
                 <footer>
