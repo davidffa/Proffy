@@ -29,7 +29,7 @@ export default class RecoveryController {
                 to: email,
                 from: 'Proffy@proffy.com',
                 subject: 'Recuperação de senha',
-                text: `Esqueceu a sua senha? Não tem problema, utilize este token: ${token}`,
+                html: `<p>Esqueceu a sua senha? Não tem problema, clique <a href="http://localhost:3000/resetpassword?token=${token}">aqui</a> para a resetar</p>`,
             }, (err) => {
                 if (err) 
                     return res.status(400).send({ error: 'Cannot send password recovery email' });
