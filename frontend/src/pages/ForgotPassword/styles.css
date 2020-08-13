@@ -25,6 +25,7 @@
 #forgot-password-container .form-container img {
     margin-top: -4rem;
     margin-bottom: 10rem;
+    cursor: pointer;
 }
 
 .forgot-password-form legend {
@@ -64,6 +65,8 @@
     width: 100%;
 
     font-weight: bold;
+
+    transition: 0.2s;
 }
 
 @media(min-width: 768px) { 
@@ -72,10 +75,10 @@
     }
     
     #forgot-password-container .form-container {
-        width: 50vw;
         height: 100vh;
+        width: 40vw;
 
-        margin-top: -10rem;
+        margin-top: -8rem;
 
         display: flex;
         
@@ -85,6 +88,6 @@
 
     #forgot-password-container .form-container img {
         margin-top: -25rem;
-        margin-bottom: 25rem;
+        margin-bottom: 30rem;
     }
 }
