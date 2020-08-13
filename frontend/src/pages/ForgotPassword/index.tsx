@@ -3,8 +3,10 @@ import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import goBack from '../../assets/images/icons/back.svg';
 import SideImage from '../../components/SideImage';
+
+import goBack from '../../assets/images/icons/back.svg';
+import check from '../../assets/images/icons/check.svg';
 
 import './styles.css';
 
@@ -60,6 +62,10 @@ function ForgotPassword() {
             await api.post('forgot_password', {
                 email,
             });
+
+            const overlay = document.getElementById("overlay");
+            if (overlay)
+                overlay.style.height = "100%";
         }catch (err) {
             alert('E-mail não encontrado!')
         }
@@ -71,6 +77,15 @@ function ForgotPassword() {
 
     return (
         <div id="forgot-password-container">
+            <div id="overlay">
+                <img src={check} alt="Check"/>
+                <h1>Redefinição enviada</h1>
+
+                <h5>Boa, agora é só verificar o e-mail que foi enviado para você <br /> redefinir sua senha e aproveitar seus estudos</h5>
+
+                <button onClick={handleGoBack}>Voltar ao login</button>
+            </div>
+
             <div className="form-container">
                 <img src={goBack} alt="Voltar" onClick={handleGoBack} />
                 <form onSubmit={handleForgotPassword} className="forgot-password-form">

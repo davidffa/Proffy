@@ -69,6 +69,54 @@
     transition: 0.2s;
 }
 
+#forgot-password-container #overlay {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-image: url('../../assets/images/background-overlay.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--color-primary);
+    overflow-x: hidden;
+    transition: 0.5s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#forgot-password-container #overlay h1 {
+    margin-top: 2rem;
+    color: #FFF;
+    font-size: 3rem;
+}
+
+#forgot-password-container #overlay h5 {
+    color: var(--color-text-in-primary);
+    font-weight: normal;
+    text-align: center;
+}
+
+#forgot-password-container #overlay button {
+    color: #FFF;
+    background-color: var(--color-secundary);
+    border: 0;
+    outline: 0;
+    border-radius: 0.8rem;
+    height: 5.8rem;
+    width: 15rem;
+    margin-top: 10rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+#forgot-password-container #overlay button:hover {
+    background-color: var(--color-secundary-dark);
+}
+
 @media(min-width: 768px) { 
     #forgot-password-container {
         flex-direction: row;
@@ -89,5 +137,11 @@
     #forgot-password-container .form-container img {
         margin-top: -25rem;
         margin-bottom: 30rem;
+    }
+
+    #forgot-password-container #overlay h1 {
+        margin-top: 5rem;
+        color: #FFF;
+        font-size: 3rem;
     }
 }
