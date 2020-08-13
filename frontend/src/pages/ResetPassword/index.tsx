@@ -3,7 +3,10 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
+import SideImage from '../../components/SideImage';
+
 import './styles.css';
+import PasswordInput from '../../components/PasswordInput';
 
 function ResetPassword() {
     const history = useHistory();
@@ -32,7 +35,21 @@ function ResetPassword() {
     }
 
     return (
-        <div/>
+        <div id="reset-password-container">
+            <SideImage />
+
+            <div className="reset-password-form-container">
+                <form onSubmit={handleChangePassword} className="reset-password-form">
+                    <legend>Escolha uma nova password.</legend>
+
+                    <fieldset>
+                        <PasswordInput />
+                    </fieldset>
+
+                    <button type="submit">Alterar Senha</button>
+                </form>
+            </div>
+        </div>
     );
 }
 

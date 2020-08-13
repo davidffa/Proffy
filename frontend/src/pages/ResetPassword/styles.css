@@ -1,0 +1,60 @@
+#reset-password-container {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    background-color: var(--color-background);
+
+    /* Prevent user from selecting text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.reset-password-form-container {
+    margin-top: 10rem;
+}
+
+.reset-password-form legend {
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.reset-password-form fieldset {
+    margin-top: 5rem;
+    border: 0;
+}
+
+.reset-password-form button {
+    margin-top: 5rem;
+    border: 0;
+    outline: 0;
+    margin-bottom: 10rem;
+    background-color: #DCDCE5;
+
+    font-weight: bold;
+
+    width: 100%;
+    height: 5.8rem;
+
+    border-radius: 0.8rem;
+
+    cursor: not-allowed;
+}
+
+@media(min-width: 768px) { 
+    #reset-password-container {
+        flex-direction: row;
+    }
+
+    .reset-password-form-container {
+        margin-left: 10%;
+    }
+}
