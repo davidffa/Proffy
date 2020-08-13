@@ -100,10 +100,12 @@ function ResetPassword() {
                     <legend>Escolha uma nova password.</legend>
 
                     <fieldset>
-                        <PasswordInput
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                        />
+                        <div className="password-input-block">
+                            <PasswordInput
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                        </div>
                     </fieldset>
 
                     <button id="button" type="submit" onMouseOver={buttonHover} onMouseOut={removeHover}>Alterar Senha</button>
