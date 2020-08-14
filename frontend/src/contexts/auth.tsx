@@ -23,7 +23,9 @@ export const AuthProvider: React.FC = ({ children }) => {
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
                 
                 try {
-                    const res = await api.get('profile');
+                    const res = await api.post('profile', {
+                        subject: ''
+                    });
                     setUser(res.data);
                 }catch (err) {
                     localStorage.clear();
@@ -41,12 +43,11 @@ export const AuthProvider: React.FC = ({ children }) => {
                 password
             });
 
-            setUser(res.data.user);
             api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
+            setUser(res.data.user);
             
             if (remember) {
                 try {
-                    localStorage.setItem('user', JSON.stringify(res.data.user));
                     localStorage.setItem('token', res.data.token);
                 } catch(err) {
                     alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
