@@ -2,9 +2,27 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 import api from '../services/api';
 
+interface ScheduleItem {
+    class_id?: number,
+    week_day: number,
+    from: string,
+    to: string;
+}
+
+interface User {
+    name: string,
+    surname: string,
+    email: string;
+    whatsapp: string | null;
+    bio: string | null;
+    avatar: string | null;
+    cost?: number;
+    schedule?: [ScheduleItem];
+}
+
 interface AuthContextData {
     signed: boolean;
-    user: object | null;
+    user: User | null;
     signIn(email: string, password: string, remember: boolean): Promise<void>
     signOut(): void;
 }
@@ -12,7 +30,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-    const [user, setUser] = useState<object | null>(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         async function loadStoragedData() {

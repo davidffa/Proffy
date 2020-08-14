@@ -10,6 +10,36 @@
     background: var(--color-primary);
 }
 
+#page-landing header {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+#page-landing header .avatar-container {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    cursor: pointer;
+}
+
+#page-landing header .avatar-container strong {
+    margin-left: 2rem;
+}
+
+#page-landing header .avatar-container img {
+    border-radius: 50%;
+    height: 4.1rem;
+}
+
+#page-landing header .logout {
+    cursor: pointer;
+}   
+
 .logo-container img {
     height: 10rem;
 }
@@ -97,12 +127,22 @@
         max-width: 1100px;
 
         display: grid;
-        grid-template-rows: 350px 1fr;
+        grid-template-rows: 1fr 350px 1fr;
         grid-template-columns: 2fr 1fr 1fr;
         grid-template-areas: 
+            "avatar avatar avatar"
             "logo hero hero"
-            "buttons buttons total"
+            "total buttons buttons"
         ;
+    }
+
+    #page-landing header {
+        margin-bottom: 20rem;
+        grid-area: avatar;
+    }
+
+    #page-landing header .logout {
+        grid-area: logout;
     }
 
     .logo-container {
@@ -137,6 +177,6 @@
 
     .total-connections {
         grid-area: total;
-        justify-self: end;
+        justify-self: start;
     }
 }
