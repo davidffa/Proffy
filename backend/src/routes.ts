@@ -10,6 +10,7 @@ import ConnectionsController from './controllers/ConnectionsController';
 import AuthController from './controllers/AuthController';
 import RecoveryController from './controllers/RecoveryController';
 import UpdateController from './controllers/UpdateController';
+import ProfileController from './controllers/ProfileController';
 
 const routes = express.Router();
 const upload = multer(multerConfig);
@@ -19,6 +20,7 @@ const connectionsController = new ConnectionsController();
 const authController = new AuthController();
 const recoveryController = new RecoveryController();
 const updateController = new UpdateController();
+const profileController = new ProfileController();
 
 routes.get('/classes', auth, classesController.index);
 routes.post('/classes', auth, classesController.create);
@@ -33,6 +35,7 @@ routes.post('/forgot_password', recoveryController.recover);
 routes.post('/reset_password', recoveryController.reset);
 
 routes.post('/update', auth, upload.single('avatar'), updateController.update);
-routes.get('/update', auth, updateController.show);
+
+routes.post('/profile', auth, profileController.show);
 
 export default routes;
