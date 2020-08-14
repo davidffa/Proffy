@@ -83,15 +83,7 @@ export default class AuthController {
         user.password = '';
 
         res.send({ 
-            token: generateToken(user),
-            user: {
-                name: user.name,
-                surname: user.surname,
-                email: email,
-                whatsapp: user.whatsapp,
-                avatar: user.avatar,
-                bio: user.bio,
-            },
+            token: generateToken(user)
         });
     }
 }
