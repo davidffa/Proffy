@@ -4,4 +4,4 @@ node_modules
 *.sqlite
 
 uploads/*
-!uploads/.gitkeep
+!uploads/default.png
