@@ -1,10 +1,10 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import { useAuth } from '../../contexts/auth';
 
 import SideImage from '../../components/SideImage';
 import PasswordInput from '../../components/PasswordInput';
-
-import api from '../../services/api';
 
 import purpleHeart from '../../assets/images/icons/purple-heart.svg';
 import checkbox from '../../assets/images/icons/checkbox.svg';
@@ -13,7 +13,7 @@ import square from '../../assets/images/icons/square.svg';
 import './styles.css';
 
 function Login() {
-    const history = useHistory();
+    const { signIn } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -61,30 +61,7 @@ function Login() {
     async function handleLogin(e: FormEvent) {
         e.preventDefault();
 
-        try {
-            const res = await api.post('login', {
-                email,
-                password
-            });
-            
-            if (remember) {
-                try {
-                    localStorage.setItem('token', res.data.token);
-                    history.push('/home');
-                } catch(err) {
-                    alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
-                } 
-            }else {
-                try {
-                    sessionStorage.setItem('token', res.data.token);
-                    history.push('/home');
-                } catch(err) {
-                    alert('Ocorreu um erro! Ative o armazenamento local do seu browser.')
-                } 
-            }
-        }catch (err) {
-            alert('Email ou password incorretos!');
-        }
+        await signIn(email, password, remember);
     }
 
     return (
