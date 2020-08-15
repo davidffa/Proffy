@@ -31,6 +31,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadStoragedData() {
@@ -49,6 +50,7 @@ export const AuthProvider: React.FC = ({ children }) => {
                     localStorage.clear();
                 }
             }
+            setLoading(false)
         }   
 
         loadStoragedData();
@@ -79,6 +81,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     function signOut() {
         setUser(null);
         localStorage.clear();
+    }
+
+    if (loading) {
+        return <div/>
     }
 
     return (
