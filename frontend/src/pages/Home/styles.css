@@ -3,14 +3,18 @@
     height: 100vh;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     color: var(--color-text-in-primary);
     background: var(--color-primary);
+
+    overflow-x: hidden;
 }
 
 #page-landing header {
+    margin-top: 14rem;
     display: flex;
     flex-direction: row;
 
@@ -40,6 +44,38 @@
     cursor: pointer;
 }   
 
+#page-landing section {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7rem;
+}
+
+#page-landing footer {
+    padding-top: 4rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    color: var(--color-text-complement);
+    
+    background-color: var(--color-background);
+}
+
+#page-landing footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .logo-container img {
     height: 10rem;
 }
@@ -64,6 +100,8 @@
     display: flex;
     justify-content: center;
     margin: 3.2rem 0;
+
+    width: 70%;
 }
 
 .buttons-container a {
@@ -91,7 +129,7 @@
 }
 
 .buttons-container a.study {
-    background: var(--color-primary-lighter);
+    background: var(--color-primary);
 }
 
 .buttons-container a.give-classes {
@@ -99,7 +137,7 @@
 }
 
 .buttons-container a.study:hover {
-    background: var(--color-primary-light);
+    background: var(--color-primary-dark);
 }
 
 .buttons-container a.give-classes:hover {
@@ -108,6 +146,18 @@
 
 .buttons-container a img {
     margin-right: 2.4rem;
+}
+
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    text-align: center;
+    margin-bottom: 2rem;
+
+    color: var(--color-text-base);
 }
 
 .total-connections {
@@ -125,28 +175,32 @@
 @media (min-width: 1100px) {
     #page-landing-content {
         max-width: 1100px;
-
-        display: grid;
-        grid-template-rows: 1fr 350px 1fr;
-        grid-template-columns: 2fr 1fr 1fr;
-        grid-template-areas: 
-            "avatar avatar avatar"
-            "logo hero hero"
-            "total buttons buttons"
-        ;
     }
 
     #page-landing header {
-        margin-bottom: 20rem;
-        grid-area: avatar;
+        margin-top: 5rem;
     }
 
-    #page-landing header .logout {
-        grid-area: logout;
+    #page-landing section {
+        margin-top: 10rem;
+        display: flex;
+        flex-direction: row;
+    
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 6rem;
+    }
+
+    #page-landing footer .footer-content {
+        max-width: 1100px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-end; 
+        padding-bottom: 8rem;
     }
 
     .logo-container {
-        grid-area: logo;
         align-self: center;
         text-align: left;
         margin: 0;
@@ -162,21 +216,39 @@
     }
 
     .hero-image {
-        grid-area: hero;
         justify-self: end;
     }
 
     .buttons-container {
-        grid-area: buttons;
-        justify-content: flex-start;
+        justify-content: flex-end;
     }
 
     .buttons-container a {
         font-size: 3.4rem;
     }
 
-    .total-connections {
-        grid-area: total;
+    .welcome-container {
         justify-self: start;
+        margin-bottom: 7rem;
+    }
+
+    .welcome-container .welcome {
+        text-align: left;
+        width: 16rem;
+    }
+
+    .total-connections {
+        justify-self: end;
+
+        width: 25rem;
+        margin-bottom: 7rem;
+        margin-right: 5rem;
+        margin-left: 10rem;
+
+        text-align: right;
+    }
+
+    .total-connections img {
+        margin-top: 2.4rem;
     }
 }

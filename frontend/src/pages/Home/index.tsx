@@ -60,16 +60,31 @@ function Home() {
                         onClick={handleLogout} 
                     />
                 </header>
-                <div className="logo-container">
-                    <img src={logoImg} alt="Proffy"/>
-                    <h2>Sua plataforma de estudos online.</h2>
+                
+                <section>
+                    <div className="logo-container">
+                        <img src={logoImg} alt="Proffy"/>
+                        <h2>Sua plataforma de estudos online.</h2>
+                    </div>
+
+                    <img
+                        src={landingImg} 
+                        alt="hero"
+                        className="hero-image"
+                    />   
+                </section>             
+            </div>
+            <footer>
+
+                <div className="footer-content">
+                    <div className="welcome-container">
+                    <span className="welcome">Seja bem-vindo.</span>
+                    <strong>O que deseja fazer?</strong>
                 </div>
 
-                <img
-                    src={landingImg} 
-                    alt="hero"
-                    className="hero-image"
-                />                
+                <span className="total-connections">
+                    Total de {totalConnections} conexões já realizadas <img src={purpleHeartIcon} alt="Coração Púrpura"/>
+                </span>
 
                 <div className="buttons-container">
                     <Link to="/study" className="study">
@@ -82,11 +97,9 @@ function Home() {
                         Dar aulas
                     </Link>
                 </div>
-
-                <span className="total-connections">
-                    Total de {totalConnections} conexões já realizadas <img src={purpleHeartIcon} alt="Coração Púrpura"/>
-                </span>
-            </div>
+                </div>
+                
+            </footer>
         </div>
     );
 }
