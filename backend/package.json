@@ -14,10 +14,10 @@
     "@types/express": "^4.17.7",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/morgan": "^1.9.1",
-    "@types/multer": "^1.4.3",
+    "@types/multer": "^1.4.4",
     "@types/nodemailer": "^6.4.0",
     "dotenv": "^8.2.0",
-    "ts-node-dev": "^1.0.0-pre.56",
+    "ts-node-dev": "^1.0.0-pre.57",
     "typescript": "^3.9.7"
   },
   "dependencies": {
