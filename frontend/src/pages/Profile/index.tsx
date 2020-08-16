@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 
 import { useAuth } from '../../contexts/auth';
 
@@ -10,6 +10,8 @@ import warningIcon from '../../assets/images/icons/warning.svg';
 
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
+
+import api from '../../services/api';
 
 import './styles.css';
 
@@ -58,6 +60,29 @@ function Profile() {
         setScheduleItems(scheduleItems.filter((item, idx) => idx !== index));
     }
 
+    async function handleUpdateDataSubmit(e: FormEvent) {
+        e.preventDefault();
+
+        const data = new FormData();
+
+        data.append('name', name as string);
+        data.append('surname', surname as string);
+        data.append('email', email as string);
+        data.append('whatsapp', whatsapp as string);
+        data.append('bio', bio as string);
+        
+        if (selectedFile)
+            data.append('avatar', selectedFile);
+        
+        if (subject) {
+            data.append('subject', subject as string);
+            data.append('cost', cost as string);
+            data.append('schedule', JSON.stringify(scheduleItems));
+        }
+        
+        await api.post('update', data);
+    }
+
     return (
         <div id="profile-container">
             <PageHeader headerTitle="Meu perfil">
@@ -66,7 +91,7 @@ function Profile() {
             </PageHeader>
 
             <main>
-                <form>
+                <form onSubmit={handleUpdateDataSubmit}>
                 <fieldset>
                     <legend>Seus dados</legend>
 
