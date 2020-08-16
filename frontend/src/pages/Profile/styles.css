@@ -29,18 +29,6 @@
     align-items: center;
 }
 
-#profile-container .page-header .header-content .avatar {
-    height: 16rem;
-
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-#profile-container .page-header .header-content .camera {
-    margin-left: -4.5rem;
-    cursor: pointer;
-}
-
 #profile-container .page-header .header-content strong {
     margin-top: 4rem;
 }

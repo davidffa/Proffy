@@ -4,9 +4,9 @@ import { useAuth } from '../../contexts/auth';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
+import DropZone from '../../components/DropZone';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
-import camera from '../../assets/images/icons/camera.svg';
 
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
@@ -27,7 +27,8 @@ function Profile() {
     const [email, setEmail] = useState(user?.email);
     const [whatsapp, setWhatsapp] = useState(user?.whatsapp ? user.whatsapp : '');
     const [bio, setBio] = useState(user?.bio ? user.bio : '');
-    const [avatar, setAvatar] = useState(user?.avatar);
+
+    const [selectedFile, setSelectedFile] = useState<File>();
 
     const [subject, setSubject] = useState('');
     const [cost, setCost] = useState(''); 
@@ -60,10 +61,7 @@ function Profile() {
     return (
         <div id="profile-container">
             <PageHeader headerTitle="Meu perfil">
-                <div className="avatar-container">
-                    <img src={`http://localhost:3333/uploads/${avatar ? avatar : 'default.png'}`} alt="Avatar" className="avatar" />
-                    <img src={camera} alt="Camera" className="camera" />
-                </div>
+                <DropZone onFileUpload={setSelectedFile} avatar={user?.avatar}/>
                 <strong>{`${name} ${surname}`}</strong>
             </PageHeader>
 

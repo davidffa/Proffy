@@ -1,0 +1,15 @@
+#avatar-container {
+    outline: 0;
+}
+
+#avatar-container .avatar {
+    height: 16rem;
+
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#avatar-container .camera {
+    margin-left: -4.5rem;
+    cursor: pointer;
+}
