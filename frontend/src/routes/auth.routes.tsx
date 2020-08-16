@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import Login from '../pages/Login';
 import Register from '../pages/Register';
@@ -13,6 +13,7 @@ function AuthRoutes() {
             <Route path="/register" component={Register} />
             <Route path="/forgotpassword" component={ForgotPassword} />
             <Route path="/resetpassword" component={ResetPassword} />
+            <Redirect from="*" to="/" />
         </BrowserRouter>
     );
 }
