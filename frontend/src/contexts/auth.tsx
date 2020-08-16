@@ -40,14 +40,16 @@ export const AuthProvider: React.FC = ({ children }) => {
 
             if (storagedToken) {
                 api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-                
+
                 try {
                     const res = await api.post('profile', {
                         subject: ''
                     });
+
                     setUser(res.data);
                 }catch (err) {
-                    localStorage.clear();
+                    if (err.response && err.response.status === 401)
+                        localStorage.clear();
                 }
             }
             setLoading(false)
