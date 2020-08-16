@@ -8,7 +8,8 @@ import backIcon from '../../assets/images/icons/back.svg';
 import './styles.css';
 
 interface PageHeaderProps {
-    title: string;
+    headerTitle?: string;
+    title?: string;
     description?: string;
 }
 
@@ -19,6 +20,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
                 <Link to="/">
                     <img src={backIcon} alt="Voltar"/>
                 </Link>
+                <span>{props.headerTitle}</span>
                 <img src={logoImg} alt="Proffy"/>
             </div>
 

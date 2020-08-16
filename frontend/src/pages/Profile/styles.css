@@ -1,0 +1,246 @@
+#profile-container {
+    width: 100vw;
+    height: 100vh;
+
+    /* Prevent user from selecting text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#profile-container .page-header {
+    background-image: url('../../assets/images/profile-background.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+
+    height: 45rem;
+}
+
+#profile-container .page-header .header-content {
+    margin-bottom: 6.4rem;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-container .page-header .header-content .avatar {
+    height: 16rem;
+
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#profile-container .page-header .header-content .camera {
+    margin-left: -4.5rem;
+    cursor: pointer;
+}
+
+#profile-container .page-header .header-content strong {
+    margin-top: 4rem;
+}
+
+#profile-container main {
+    background: var(--color-box-base);
+    width: 100%;
+    max-width: 74rem;
+    border-radius: 0.8rem;
+    margin: -3.2rem auto 3.2rem;
+    padding-top: 6.4rem;
+    overflow: hidden;
+}
+
+#profile-container main fieldset {
+    border: 0;
+    padding-top: 0, 2.4rem;
+}
+
+#profile-container main fieldset .name-input {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+#profile-container main fieldset .name-input .input-block{
+    margin: 0;
+}
+
+#profile-container main fieldset .contact-input {
+    margin: 2rem auto;
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+#profile-container main fieldset .contact-input .input-block + .input-block {
+    margin: 0;
+}
+
+#profile-container main fieldset .contact-input .input-block:first-child {
+    width: 35rem;
+}
+
+#profile-container main fieldset .contact-input .whatsapp-input {
+    display: flex;
+}
+
+#profile-container main fieldset + fieldset {
+    margin-top: 6.4rem;
+}
+
+#profile-container main fieldset .class-info {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#profile-container main fieldset .class-info .input-block {
+    margin: 0; 
+    width: 50%;
+}
+
+#profile-container main fieldset legend {
+    font: 700 2.4rem Archivo;
+    color: var(--color-text-title);
+    margin-bottom: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--color-line-in-white);
+}
+
+#profile-container main fieldset legend button {
+    background: none;
+    border: 0;
+    color: var(--color-primary);
+    font: 700 1.6rem Archivo;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#profile-container main fieldset legend button:hover {
+    color: var(--color-primary-dark);
+}
+
+#profile-container main fieldset .input-block + .textarea-block,
+#profile-container main fieldset .select-block + .input-block {
+    margin-top: 2.4rem;
+}
+
+#profile-container main label {
+    color: var(--color-text-complement);
+}
+
+#profile-container .schedule-item {
+    margin-bottom: 1.6rem;
+}
+
+#profile-container .schedule-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-container .schedule-item-container {
+    margin-bottom: 2rem;
+}
+
+#profile-container .schedule-item-container span {
+    font-weight: bold;
+    font-family: Archivo;
+    
+    color: #E33D3D;
+    cursor: pointer;
+}
+
+#profile-container main footer {
+    padding: 4rem 2.4rem;
+    background: var(--color-box-footer);
+    border-top-color: 1px solid var(--color-line-in-white);
+    margin-top: 6.4rem;
+}
+
+#profile-container main footer p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    color: var(--color-text-complement);
+}
+
+#profile-container main footer p img {
+    margin-right: 2rem;
+}
+
+#profile-container main footer button {
+    width: 100%;
+    height: 5.6rem;
+    background: var(--color-secundary);
+    color: var(--color-button-text);
+    border: 0;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font: 700 1.6rem Archivo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    margin-top: 3.2rem;
+}
+
+#profile-container main footer button:hover {
+    background: var(--color-secundary-dark);
+}
+
+@media (min-width: 700px) {
+    #profile-container {
+        max-width: 100vw;
+    }
+
+    #profile-container .page-header .header-content {
+        margin-bottom: 0;
+    }
+
+    #profile-container main fieldset {
+        padding: 0 6.4rem;
+    }
+
+    #profile-container main .schedule-item {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        column-gap: 1.6rem;
+    }
+
+    #profile-container main .schedule-item .input-block {
+        margin-top: 0 !important;
+    }
+
+    #profile-container main footer {
+        padding: 4.0rem 6.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #profile-container main footer p {
+        justify-content: space-between;
+    }
+
+    #profile-container main footer button {
+        width: 20rem;
+        margin-top: 0;
+    }
+}
