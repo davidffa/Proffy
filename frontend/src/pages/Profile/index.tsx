@@ -61,7 +61,7 @@ function Profile() {
         <div id="profile-container">
             <PageHeader headerTitle="Meu perfil">
                 <div className="avatar-container">
-                    <img src={`http://localhost:3333/uploads/${avatar as string}`} alt="Avatar" className="avatar" />
+                    <img src={`http://localhost:3333/uploads/${avatar ? avatar : 'default.png'}`} alt="Avatar" className="avatar" />
                     <img src={camera} alt="Camera" className="camera" />
                 </div>
                 <strong>{`${name} ${surname}`}</strong>
