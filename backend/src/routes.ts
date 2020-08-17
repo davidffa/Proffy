@@ -11,6 +11,7 @@ import AuthController from './controllers/AuthController';
 import RecoveryController from './controllers/RecoveryController';
 import UpdateController from './controllers/UpdateController';
 import ProfileController from './controllers/ProfileController';
+import TeachersController from "./controllers/TeachersController";
 
 const routes = express.Router();
 const upload = multer(multerConfig);
@@ -21,12 +22,15 @@ const authController = new AuthController();
 const recoveryController = new RecoveryController();
 const updateController = new UpdateController();
 const profileController = new ProfileController();
+const teachersController = new TeachersController();
 
 routes.get('/classes', auth, classesController.index);
 routes.post('/classes', auth, classesController.create);
 
 routes.get('/connections', connectionsController.index);
 routes.post('/connections', auth, connectionsController.create);
+
+routes.get('/teachers', teachersController.index);
 
 routes.post('/register', authController.register);
 routes.post('/login', authController.login);
