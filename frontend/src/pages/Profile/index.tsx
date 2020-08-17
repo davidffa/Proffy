@@ -4,6 +4,8 @@ import InputMask from 'react-input-mask';
 
 import { useAuth } from '../../contexts/auth';
 
+import convertMinutesToHours from '../../utils/convertMinutesToHours';
+
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import DropZone from '../../components/DropZone';
@@ -42,16 +44,38 @@ function Profile() {
     const [scheduleItems, setScheduleItems] = useState<Array<Schedule>>([]);
 
     useEffect(() => {
+        async function getSubjectData() {
+            const res = await api.post('/profile', {
+                subject
+            });
+
+            if (res.data.cost) setCost(res.data.cost);
+            if (res.data.schedule) {
+                res.data.schedule.map((scheduleItem: Schedule) => {
+                    scheduleItem.from = convertMinutesToHours(scheduleItem.from);
+                    scheduleItem.to = convertMinutesToHours(scheduleItem.to);
+                    return scheduleItem;
+                })
+                setScheduleItems(res.data.schedule);
+            }
+        }
+
         if (subject !== '') {
             const classCost = document.getElementById('class-cost');
 
             if (classCost) {
                 classCost.setAttribute('required', '');
             }
+
+            setCost('');
+            setScheduleItems([]);
+
+            getSubjectData();
         }
     }, [subject]);
 
     function addNewScheduleItem() {
+        if (!subject) return;
         setScheduleItems([
             ...scheduleItems,
             { week_day: 0, from: '', to: ''}
@@ -160,7 +184,7 @@ function Profile() {
                         <div className="input-block">
                             <label htmlFor="whatsapp">Whatsapp</label>
                             <InputMask 
-                                mask="+3\5\1 999 999 999" 
+                                mask="+351 999 999 999" 
                                 id="whatsapp" 
                                 className="whatsapp-input" 
                                 value={whatsapp} 
@@ -219,11 +243,10 @@ function Profile() {
                             + Novo horário
                         </button>
                     </legend>
-                    
                     {scheduleItems.map((scheduleItem, index) => {
                         return (
-                            <div className="schedule-item-container">
-                                <div key={scheduleItem.week_day} className="schedule-item">
+                            <div key={index} className="schedule-item-container">
+                                <div className="schedule-item">
                                     <Select 
                                         name="week_day" 
                                         label="Dia da semana"
