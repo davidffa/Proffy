@@ -1,4 +1,6 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
 import { useAuth } from '../../contexts/auth';
 
@@ -7,6 +9,7 @@ import Input from '../../components/Input';
 import DropZone from '../../components/DropZone';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
+import check from '../../assets/images/icons/check.svg';
 
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
@@ -23,6 +26,7 @@ interface Schedule {
 
 function Profile() {
     const { user } = useAuth();
+    const history = useHistory();
 
     const [name, setName] = useState(user?.name);
     const [surname, setSurname] = useState(user?.surname);
@@ -36,6 +40,16 @@ function Profile() {
     const [cost, setCost] = useState(''); 
 
     const [scheduleItems, setScheduleItems] = useState<Array<Schedule>>([]);
+
+    useEffect(() => {
+        if (subject !== '') {
+            const classCost = document.getElementById('class-cost');
+
+            if (classCost) {
+                classCost.setAttribute('required', '');
+            }
+        }
+    }, [subject]);
 
     function addNewScheduleItem() {
         setScheduleItems([
@@ -81,10 +95,28 @@ function Profile() {
         }
         
         await api.post('update', data);
+
+        const overlay = document.getElementById("overlay");
+
+        if (overlay)
+            overlay.style.height = "100%";
+    }
+
+    function handleGoHome() {
+        history.push('/');
     }
 
     return (
         <div id="profile-container">
+            <div id="overlay">
+                <img src={check} alt="Check"/>
+                <h1>Atualização de perfil concluída</h1>
+
+                <h5>Dados atualizados com sucesso <br /> atualize sempre que precisar!</h5>
+
+                <button onClick={handleGoHome}>Voltar à home</button>
+            </div>
+
             <PageHeader headerTitle="Meu perfil">
                 <DropZone onFileUpload={setSelectedFile} avatar={user?.avatar}/>
                 <strong>{`${name} ${surname}`}</strong>
@@ -123,14 +155,17 @@ function Profile() {
                             required
                         />
 
-                        <Input 
-                            name="whatsapp" 
-                            label="Whatsapp" 
-                            value={whatsapp} 
-                            onChange={e => setWhatsapp(e.target.value)} 
-                            className="whatsapp-input"
-                            required
-                        />
+                        <div className="input-block">
+                            <label htmlFor="whatsapp">Whatsapp</label>
+                            <InputMask 
+                                mask="+3\5\1 999 999 999" 
+                                id="whatsapp" 
+                                className="whatsapp-input" 
+                                value={whatsapp} 
+                                onChange={e => setWhatsapp(e.target.value)} 
+                                required
+                            />
+                        </div>
                     </div>
                     
                     
@@ -164,14 +199,13 @@ function Profile() {
                                 { value: 'Português', label: 'Português'},
                                 { value: 'Química', label: 'Química'},
                             ]}
-                            required
                         />
                         <Input 
                             name="cost" 
                             label="Custo da sua hora por aula"
                             value={cost}
                             onChange={(e) => setCost(e.target.value)}
-                            required
+                            id="class-cost"
                         />
                     </div>
                 </fieldset>
