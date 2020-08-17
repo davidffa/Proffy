@@ -25,6 +25,7 @@ interface AuthContextData {
     user: User | null;
     signIn(email: string, password: string, remember: boolean): Promise<void>
     signOut(): void;
+    reloadData(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -85,12 +86,25 @@ export const AuthProvider: React.FC = ({ children }) => {
         localStorage.clear();
     }
 
+    async function reloadData() {
+        try {
+            const res = await api.post('profile', {
+                subject: ''
+            });
+
+            setUser(res.data);
+        }catch (err) {
+            if (err.response && err.response.status === 401)
+                localStorage.clear();
+        }
+    }
+
     if (loading) {
         return <div/>
     }
 
     return (
-        <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>
+        <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, reloadData }}>
             {children}
         </AuthContext.Provider>
     );

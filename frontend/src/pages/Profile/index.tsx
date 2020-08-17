@@ -25,7 +25,7 @@ interface Schedule {
 }
 
 function Profile() {
-    const { user } = useAuth();
+    const { user, reloadData } = useAuth();
     const history = useHistory();
 
     const [name, setName] = useState(user?.name);
@@ -104,6 +104,8 @@ function Profile() {
 
     function handleGoHome() {
         history.push('/');
+
+        reloadData();
     }
 
     return (
