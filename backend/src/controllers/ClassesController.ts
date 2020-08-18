@@ -44,8 +44,6 @@ export default class ClassesController {
 
     async create(req: Request, res: Response) {
         const {
-            name,
-            surname,
             email,
             whatsapp,
             bio,
@@ -68,8 +66,6 @@ export default class ClassesController {
 
         try {
             await trx('users').where('id', user_id).update({
-                name,
-                surname,
                 email,
                 whatsapp,
                 bio,
