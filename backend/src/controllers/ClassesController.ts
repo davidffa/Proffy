@@ -17,6 +17,13 @@ export default class ClassesController {
             const allClasses = await db('classes')  
                 .join('users', 'classes.user_id', '=', 'users.id')
                 .select(['classes.*', 'users.name', 'users.surname', 'users.whatsapp', 'users.avatar', 'users.bio']);
+
+            await Promise.all(allClasses.map(async classItem => {
+                const allSchedules = await db('class_schedule')
+                    .where('class_id', '=', classItem.id);
+                classItem.schedule = allSchedules;
+            }));
+
             return res.json(allClasses);
         }
 
