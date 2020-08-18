@@ -76,6 +76,15 @@
     background: var(--color-secundary-dark);
 }
 
+.schedule-items-container {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 2rem;
+}
+
 @media (min-width: 700px) {
     .teacher-item header,
     .teacher-item footer {

@@ -2,6 +2,8 @@ import React from 'react';
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg';
 
+import ScheduleItem from '../ScheduleItem';
+
 import api from '../../services/api';
 
 import './styles.css';
@@ -30,7 +32,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
     return (
         <article className="teacher-item">
             <header>
-                <img src={teacher.avatar} alt={teacher.name}/>
+                <img src={`http://localhost:3333/uploads/${teacher.avatar}`} alt={teacher.name}/>
                 <div>
                     <strong>{teacher.name}</strong>
                     <span>{teacher.subject}</span>
@@ -38,6 +40,39 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
             </header>
 
             <p>{teacher.bio}</p>
+
+            <div className="schedule-items-container">
+                <ScheduleItem
+                    day="Segunda"
+                    from=""
+                    to=""
+                />
+                
+                <ScheduleItem
+                    day="Terça"
+                    from=""
+                    to=""
+                />
+
+                <ScheduleItem
+                    day="Quarta"
+                    from=""
+                    to=""
+                />
+
+                <ScheduleItem
+                    day="Quinta"
+                    from=""
+                    to=""
+                />
+
+                <ScheduleItem
+                    day="Sexta"
+                    from=""
+                    to=""
+                />
+            </div>
+
             <footer>
                 <p>
                     Preço/hora

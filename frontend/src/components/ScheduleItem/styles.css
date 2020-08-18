@@ -1,0 +1,51 @@
+.schedule-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    border: 1px solid var(--color-line-in-white);
+    width: 100%;
+    height: 14rem;
+    margin: 0 1rem;
+
+    border-radius: 1rem;
+}
+
+.schedule-item span {
+    font-size: 1.4rem;
+    margin-left: 2rem;
+    color: var(--color-text-complement);
+}
+
+.schedule-item strong {
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    font-family: Archivo;
+}
+
+.empty-schedule-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 100%;
+    height: 14rem;
+    margin: 0 1rem;
+
+    border: 0;
+    opacity: 0.4;
+}
+
+.empty-schedule-item span {
+    font-size: 1.4rem;
+    margin-left: 2rem;
+    color: var(--color-text-complement);
+}
+
+.empty-schedule-item strong {
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    font-family: Archivo;
+}
