@@ -5,6 +5,8 @@ import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 
+import teacherEmoji from '../../assets/images/icons/teacher-emoji.svg';
+
 import api from '../../services/api';
 
 import './styles.css';
@@ -16,9 +18,13 @@ function TeacherList() {
     const [week_day, setWeekDay] = useState('');
     const [time, setTime] = useState('');
 
+    const [totalTeachers, setTotalTeachers] = useState(0);
+
     useEffect(() => {
         api.get('classes')
             .then(res => setTeachers(res.data));
+
+        api.get('teachers').then(res => setTotalTeachers(res.data.total));
     }, []);
 
     async function searchTeachers(e: FormEvent) {
@@ -37,7 +43,11 @@ function TeacherList() {
 
     return (
         <div id="page-teacher-list" className="container">
-            <PageHeader title="Estes são os proffys disponíveis.">
+            <PageHeader title="Estes são os proffys disponíveis." headerTitle="Estudar">
+                <div className="total-teachers-container">
+                    <img src={teacherEmoji} alt="Proffys" />
+                    <span id="total-teachers">Nós temos {totalTeachers} <br /> professores.</span>
+                </div>
                 <form id="search-teachers" onSubmit={searchTeachers}>
                     <Select 
                         name="subject" 
@@ -94,8 +104,16 @@ function TeacherList() {
                     return <TeacherItem key={teacher.id} teacher={teacher} /> }) :
                     <p id="not-found">Nenhum professor encontrado <br /> com sua pesquisa.</p>
                 }
-                
+                { teachers.length && 
+                    (
+                        <div id="all-results-container">
+                            <span id="all-results">Estes são todos os resultados</span>
+                        </div>
+                    )
+                }
             </main>
+
+            
         </div>
     )
 }

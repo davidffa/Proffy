@@ -3,6 +3,27 @@
     height: 100vh;
 }
 
+#page-teacher-list .header-content {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#page-teacher-list .total-teachers-container {
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+#page-teacher-list .total-teachers-container #total-teachers {
+    color: var(--color-text-in-primary);
+    font-size: 1.4rem;
+    margin-left: 2rem;
+}
+
 #search-teachers {
     margin-top: 3.2rem;
 }
@@ -42,6 +63,18 @@
     justify-content: center;
     text-align: center;
     margin-top: 12rem;
+}
+
+#all-results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+}
+
+#all-results {
+    color: var(--color-text-complement);
 }
 
 @media (min-width: 700px) {
