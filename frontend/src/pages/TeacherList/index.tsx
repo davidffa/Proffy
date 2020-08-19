@@ -104,12 +104,13 @@ function TeacherList() {
                     return <TeacherItem key={teacher.id} teacher={teacher} /> }) :
                     <p id="not-found">Nenhum professor encontrado <br /> com sua pesquisa.</p>
                 }
-                { teachers.length && 
+                { teachers.length ? 
                     (
                         <div id="all-results-container">
                             <span id="all-results">Estes são todos os resultados</span>
                         </div>
                     )
+                    : null
                 }
             </main>
 
