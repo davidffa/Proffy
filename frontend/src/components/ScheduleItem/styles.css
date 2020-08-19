@@ -1,4 +1,4 @@
-.schedule-item {
+.schedule-item-component {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -12,19 +12,23 @@
     border-radius: 1rem;
 }
 
-.schedule-item span {
+.schedule-item-component span {
     font-size: 1.4rem;
     margin-left: 2rem;
     color: var(--color-text-complement);
 }
 
-.schedule-item strong {
+.schedule-item-component strong {
     margin-top: 0.5rem;
     margin-left: 2rem;
     font-family: Archivo;
 }
 
-.empty-schedule-item {
+.schedule-item-component .time-strong {
+    font-size: 1.3rem;
+}
+
+.empty-schedule-item-component {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -38,13 +42,13 @@
     opacity: 0.4;
 }
 
-.empty-schedule-item span {
+.empty-schedule-item-component span {
     font-size: 1.4rem;
     margin-left: 2rem;
     color: var(--color-text-complement);
 }
 
-.empty-schedule-item strong {
+.empty-schedule-item-component strong {
     margin-top: 0.5rem;
     margin-left: 2rem;
     font-family: Archivo;

@@ -8,14 +8,22 @@ import api from '../../services/api';
 
 import './styles.css';
 
+interface ScheduleItem {
+    week_day: number;
+    from: string;
+    to: string;
+}
+
 export interface Teacher {
     id: number;
     avatar: string;
     bio: string;
     cost: number;
     name: string;
+    surname: string;
     subject: string;
     whatsapp: string;
+    schedule: Array<ScheduleItem>;
 }
 
 interface TeacherItemProps {
@@ -34,7 +42,7 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
             <header>
                 <img src={`http://localhost:3333/uploads/${teacher.avatar}`} alt={teacher.name}/>
                 <div>
-                    <strong>{teacher.name}</strong>
+                    <strong>{teacher.name} {teacher.surname}</strong>
                     <span>{teacher.subject}</span>
                 </div>
             </header>
@@ -44,32 +52,32 @@ const TeacherItem: React.FC<TeacherItemProps> = ({ teacher }) => {
             <div className="schedule-items-container">
                 <ScheduleItem
                     day="Segunda"
-                    from=""
-                    to=""
+                    from={teacher.schedule.find(item => item.week_day === 1)?.from}
+                    to={teacher.schedule.find(item => item.week_day === 1)?.to}
                 />
                 
                 <ScheduleItem
                     day="Terça"
-                    from=""
-                    to=""
+                    from={teacher.schedule.find(item => item.week_day === 2)?.from}
+                    to={teacher.schedule.find(item => item.week_day === 2)?.to}
                 />
 
                 <ScheduleItem
                     day="Quarta"
-                    from=""
-                    to=""
+                    from={teacher.schedule.find(item => item.week_day === 3)?.from}
+                    to={teacher.schedule.find(item => item.week_day === 3)?.to}
                 />
 
                 <ScheduleItem
                     day="Quinta"
-                    from=""
-                    to=""
+                    from={teacher.schedule.find(item => item.week_day === 4)?.from}
+                    to={teacher.schedule.find(item => item.week_day === 4)?.to}
                 />
 
                 <ScheduleItem
                     day="Sexta"
-                    from=""
-                    to=""
+                    from={teacher.schedule.find(item => item.week_day === 5)?.from}
+                    to={teacher.schedule.find(item => item.week_day === 5)?.to}
                 />
             </div>
 
