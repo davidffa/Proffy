@@ -45,6 +45,12 @@ export default class ClassesController {
             .where('classes.subject', '=', subject)
             .join('users', 'classes.user_id', '=', 'users.id')
             .select(['classes.*', 'users.*']);
+
+        await Promise.all(classes.map(async classItem => {
+            const allSchedules = await db('class_schedule')
+                .where('class_id', '=', classItem.id);
+            classItem.schedule = allSchedules;
+        }));
         
         return res.json(classes);
     }
