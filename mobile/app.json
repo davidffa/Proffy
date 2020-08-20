@@ -1,14 +1,14 @@
 {
   "expo": {
     "name": "Proffy",
-    "slug": "Proffy",
+    "slug": "proffy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#8257E5"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,9 +18,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
