@@ -1,24 +1,27 @@
 import React, { useState, FormEvent } from 'react';
+import InputMask from 'react-input-mask';
+
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/auth';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
+import Select from '../../components/Select';
+import Textarea from '../../components/Textarea';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
-import Textarea from '../../components/Textarea';
-import Select from '../../components/Select';
 
 import api from '../../services/api';
 
 import './styles.css';
 
 function TeacherForm() {
+    const { user } = useAuth();
+
     const history = useHistory();
 
-    const [name, setName] = useState('');
-    const [avatar, setAvatar] = useState('');
-    const [whatsapp, setWhatsapp] = useState('');
-    const [bio, setBio] = useState('');
+    const [whatsapp, setWhatsapp] = useState(user?.whatsapp as string);
+    const [bio, setBio] = useState(user?.bio as string);
 
     const [subject, setSubject] = useState('');
     const [cost, setCost] = useState('');
@@ -50,8 +53,6 @@ function TeacherForm() {
         e.preventDefault();
 
         api.post('classes', {
-            name,
-            avatar,
             whatsapp,
             bio,
             subject,
@@ -71,6 +72,7 @@ function TeacherForm() {
             <PageHeader 
                 title="Que incrível que você quer dar aulas."
                 description="O primeiro passo é preencher esse formulário de inscrição"
+                headerTitle="Dar aulas"
             />
 
             <main>
@@ -78,32 +80,30 @@ function TeacherForm() {
                 <fieldset>
                     <legend>Seus dados</legend>
 
-                    <Input 
-                        name="name" 
-                        label="Nome completo" 
-                        value={name} 
-                        onChange={e => setName(e.target.value)} 
-                        required
-                    />
-                    <Input 
-                        name="avatar" 
-                        label="Avatar" 
-                        value={avatar} 
-                        onChange={e => setAvatar(e.target.value)} 
-                        required
-                    />
-                    <Input 
-                        name="whatsapp" 
-                        label="Whatsapp" 
-                        value={whatsapp} 
-                        onChange={e => setWhatsapp(e.target.value)} 
-                        required
-                    />
+                    <div className="userinfo-container">
+                        <div className="username-container">
+                            <img src={`http://localhost:3333/uploads/${user?.avatar}`} alt="Avatar" className="avatar-image"/>
+                            <strong>{user?.name} {user?.surname}</strong>
+                        </div>
+
+                        <div className="input-block">
+                            <label htmlFor="whatsapp">Whatsapp</label>
+                            <InputMask 
+                                mask="+351 999 999 999" 
+                                value={whatsapp} 
+                                onChange={e => setWhatsapp(e.target.value)} 
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    
                     <Textarea 
                         name="bio" 
-                        label="Biografia" 
+                        label="Biografia (máximo 300 caracteres)" 
                         value={bio} 
                         onChange={e => setBio(e.target.value)} 
+                        maxLength={300}
                         required
                     />
                 </fieldset>
@@ -111,32 +111,33 @@ function TeacherForm() {
                 <fieldset>
                     <legend>Sobre a aula</legend>
 
-                    <Select 
-                        name="subject" 
-                        label="Matéria"
-                        value={subject}
-                        onChange={e => setSubject(e.target.value)}
-                        options={[
-                            { value: 'Artes', label: 'Artes'},
-                            { value: 'Biologia', label: 'Biologia'},
-                            { value: 'Ciências', label: 'Ciências'},
-                            { value: 'Educação Física', label: 'Educação Física'},
-                            { value: 'Física', label: 'Física'},
-                            { value: 'Geografia', label: 'Geografia'},
-                            { value: 'História', label: 'História'},
-                            { value: 'Matemática', label: 'Matemática'},
-                            { value: 'Português', label: 'Português'},
-                            { value: 'Química', label: 'Química'},
-                        ]}
-                        required
-                    />
-                    <Input 
-                        name="cost" 
-                        label="Custo da sua hora por aula"
-                        value={cost}
-                        onChange={(e) => setCost(e.target.value)}
-                        required
-                    />
+                    <div className="class-info">
+                        <Select 
+                            name="subject" 
+                            label="Matéria"
+                            value={subject}
+                            onChange={e => setSubject(e.target.value)}
+                            options={[
+                                { value: 'Artes', label: 'Artes'},
+                                { value: 'Biologia', label: 'Biologia'},
+                                { value: 'Ciências', label: 'Ciências'},
+                                { value: 'Educação Física', label: 'Educação Física'},
+                                { value: 'Física', label: 'Física'},
+                                { value: 'Geografia', label: 'Geografia'},
+                                { value: 'História', label: 'História'},
+                                { value: 'Matemática', label: 'Matemática'},
+                                { value: 'Português', label: 'Português'},
+                                { value: 'Química', label: 'Química'},
+                            ]}
+                        />
+                        <Input 
+                            name="cost" 
+                            label="Custo da sua hora por aula"
+                            value={cost}
+                            onChange={(e) => setCost(e.target.value)}
+                            id="class-cost"
+                        />
+                    </div>
                 </fieldset>
 
                 <fieldset>

@@ -3,7 +3,7 @@
     height: 100vh;
 }
 
-#page-teacher-form .page-header .header-content {
+#page-teacher-form .header-content {
     margin-bottom: 6.4rem;
 }
 
@@ -22,6 +22,30 @@
     padding-top: 0, 2.4rem;
 }
 
+#page-teacher-form main fieldset .userinfo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#page-teacher-form main fieldset .username-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#page-teacher-form main fieldset .username-container .avatar-image {
+    border-radius: 50%;
+    height: 6rem;
+}
+
+#page-teacher-form main fieldset .username-container strong {
+    margin-left: 2rem;
+    font-size: 2rem;
+    color: var(--color-text-title);
+    font-family: Archivo;
+}
+
 #page-teacher-form main fieldset + fieldset {
     margin-top: 6.4rem;
 }
@@ -36,6 +60,18 @@
     width: 100%;
     padding-bottom: 1.6rem;
     border-bottom: 1px solid var(--color-line-in-white);
+}
+
+#page-teacher-form main fieldset .class-info {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#page-teacher-form main fieldset .class-info .input-block {
+    margin: 0; 
+    width: 50%;
 }
 
 #page-teacher-form main fieldset legend button {
