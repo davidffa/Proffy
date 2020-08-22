@@ -4,8 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { AppLoading } from 'expo';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import Onboarding from './Onboarding';
-import AppStack from './AppStack';
+import Onboarding from './Onboarding.routes';
+import AppStack from './AppStack.routes';
 
 function Routes() {
     const [hasLaunched, setHasLanunched] = useState<boolean | null>(null);
