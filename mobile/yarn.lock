@@ -1127,6 +1127,11 @@
   dependencies:
     deep-assign "^3.0.0"
 
+"@react-native-community/checkbox@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/checkbox/-/checkbox-0.5.0.tgz#28e30dbcfb54ce2aaaa70d16da6b0d5e50eb14aa"
+  integrity sha512-Utp+3nGO56/rJTDTGpJNSsI5qwzBd9xOh2LC7yMSMv2Fxfh2RugfWqdtpmRsZvmcl9+Nu1v7pIzczOT3ZmJ/jA==
+
 "@react-native-community/cli-debugger-ui@^4.9.0":
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-4.9.0.tgz#4177764ba69243c97aa26829d59d9501acb2bd71"
