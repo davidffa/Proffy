@@ -7,6 +7,7 @@ import { Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/popp
 import { Onboarding } from './src/contexts/onboarding';
 
 import Routes from './src/routes/routes';
+import { AuthProvider } from './src/contexts/auth';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -19,14 +20,14 @@ export default function App() {
 
   if (!fontsLoaded) {
     return (
-      <Onboarding>
-        <AppLoading />
-      </Onboarding>
+      <AppLoading />
     );
   }else {
     return (
       <Onboarding>
-        <Routes />
+        <AuthProvider>
+          <Routes />
+        </AuthProvider>
       </Onboarding>
     );
   }  
