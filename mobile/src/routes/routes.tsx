@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { AppLoading } from 'expo';
-import AsyncStorage from '@react-native-community/async-storage';
+
+import { useOnboarding } from '../contexts/onboarding';
 
 import Onboarding from './Onboarding.routes';
 import AppStack from './AppStack.routes';
 
-function Routes() {
-    const [hasLaunched, setHasLanunched] = useState<boolean | null>(null);
 
-    useEffect(() => {
-        async function handleSetHasLaunched() {
-            const launched = await AsyncStorage.getItem('hasLaunched');
-            
-            if (launched)
-                setHasLanunched(true);
-            else
-                setHasLanunched(false);
-        }
-        handleSetHasLaunched();
-    }, []);
+function Routes() {
+    const { hasLaunched } = useOnboarding();
 
     if (hasLaunched === null) {
         return <AppLoading />

@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { View, Image, Text, TouchableOpacity } from 'react-native';
+
+import { useOnboarding } from '../../../contexts/onboarding';
 
 import studyIcon from '../../../assets/images/give-classes-onboarding.png';
 import onboardingBg from '../../../assets/images/backgrounds/secondOnboardingBg.png';
@@ -10,8 +11,10 @@ import front from '../../../assets/images/icons/front.png';
 import styles from './styles';
 
 function OnboardingSecond() {
-    function handleNavigate() {
+    const { setLaunched } = useOnboarding();
 
+    function handleNavigate() {
+        setLaunched(true);
     }
 
     return (
