@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
         height: '45%',
         backgroundColor: '#8257E5',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        overflow: 'hidden'
     },
 
     backgroundImage: {
         position: 'absolute',
-        overflow: 'hidden'
     },
 
     logoDescription: {
@@ -117,7 +117,6 @@ const styles = StyleSheet.create({
     },
 
     loginButton: {
-        backgroundColor: '#DCDCE5',
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
@@ -126,7 +125,6 @@ const styles = StyleSheet.create({
     },
 
     loginButtonText: {
-        color: '#9C98A6',
         fontFamily: 'Archivo_700Bold'
     }
 });

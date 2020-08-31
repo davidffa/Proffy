@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { View, Image, Text, TouchableOpacity, TextInput } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Image, Text, TouchableOpacity, TextInput, Alert, KeyboardAvoidingView } from 'react-native';
+
 import CheckBox from '@react-native-community/checkbox';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -9,13 +10,39 @@ import eye from '../../assets/images/icons/eye.png';
 import eyeDivided from '../../assets/images/icons/eyeDivided.png';
 
 import styles from './styles';
+import { useAuth } from '../../contexts/auth';
 
 function Login() {
+    const { signIn } = useAuth();
+
     const [remember, setRemember] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [valid, setValid] = useState(false);
 
-    function handleLogin() {
+    useEffect(() => {
+        const regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+        if (regExEmail.test(email) && password.length >= 8) {
+            setValid(true);
+        }else {
+            setValid(false);
+        }
+    }, [email, password]);
+
+    async function handleLogin() {
+        const regExEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        
+        if (valid)
+            await signIn(email, password, remember);
+        else {
+            if (!regExEmail.test(email)) {
+                Alert.alert('Erro', 'E-mail inválido');
+            }else {
+                Alert.alert('Erro', 'A password tem de ter 8 caracteres ou mais');
+            }
+        }
     }
 
     function handleForgotPassword() {
@@ -23,7 +50,7 @@ function Login() {
     }
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
             <View style={styles.background}>
                 <Image source={bgImage} style={styles.backgroundImage} />
                 <Image source={proffy} />
@@ -46,6 +73,8 @@ function Login() {
                             autoCorrect={false} 
                             autoCapitalize="none" 
                             style={styles.emailInput} 
+                            value={email}
+                            onChangeText={text => setEmail(text)}
                         />
                     </View>
 
@@ -56,6 +85,8 @@ function Login() {
                             autoCapitalize="none" 
                             secureTextEntry={visible ? false : true} 
                             style={styles.passwordInput} 
+                            value={password}
+                            onChangeText={text => setPassword(text)}
                         />
                         <TouchableOpacity onPress={e => setVisible(!visible)}>
                             {
@@ -91,11 +122,11 @@ function Login() {
                     </TouchableOpacity>
                 </View>
 
-                <RectButton onPress={handleLogin} style={styles.loginButton}>
-                    <Text style={styles.loginButtonText}>Entrar</Text>
+                <RectButton onPress={handleLogin} style={[styles.loginButton, valid ? {backgroundColor: '#04D361'} : {backgroundColor: '#DCDCE5'}]}>
+                    <Text style={[styles.loginButtonText, valid ? {color: '#FFF'} : {color: '#9C98A6'}]}>Entrar</Text>
                 </RectButton>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
