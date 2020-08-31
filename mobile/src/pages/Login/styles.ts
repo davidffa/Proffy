@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     },
 
     passwordInputBlock: {
+        flexDirection: 'row',
         height: 62,
         borderStyle: 'solid',
         borderColor: '#E6E6F0',
@@ -76,14 +77,22 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
         borderTopWidth: 0,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        alignItems: 'center',
         paddingLeft: 24
     },
 
     passwordInput: {
         height: 62,
+        width: '75%',
         fontSize: 16,
-        color: '#9C98A6'
+        color: '#9C98A6',
+    },
+
+    eye: {
+        height: 34,
+        width: 34,
+        marginRight: 24
     },
 
     formFooter: {

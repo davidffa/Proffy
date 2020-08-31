@@ -5,11 +5,14 @@ import { RectButton } from 'react-native-gesture-handler';
 
 import bgImage from '../../assets/images/backgrounds/loginBackground.png';
 import proffy from '../../assets/images/Proffy.png';
+import eye from '../../assets/images/icons/eye.png';
+import eyeDivided from '../../assets/images/icons/eyeDivided.png';
 
 import styles from './styles';
 
 function Login() {
     const [remember, setRemember] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     function handleLogin() {
 
@@ -51,9 +54,25 @@ function Login() {
                             placeholder="Senha" 
                             autoCorrect={false} 
                             autoCapitalize="none" 
-                            secureTextEntry={true} 
+                            secureTextEntry={visible ? false : true} 
                             style={styles.passwordInput} 
                         />
+                        <TouchableOpacity onPress={e => setVisible(!visible)}>
+                            {
+                                visible ? (
+                                    <Image 
+                                        source={eyeDivided}
+                                        style={styles.eye}
+                                    /> 
+                                ) :
+                                (
+                                    <Image 
+                                        source={eye}
+                                        style={styles.eye}
+                                    /> 
+                                )
+                            }
+                        </TouchableOpacity>
                     </View>
                 </View>
 
