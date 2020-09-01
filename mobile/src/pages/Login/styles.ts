@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     },
 
     background: {
-        height: '45%',
+        height: 330,
         backgroundColor: '#8257E5',
         alignItems: 'center',
         justifyContent: 'center',
@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
 
     formTitle: {
         fontSize: 24,
-        fontFamily: 'Archivo_700Bold'
+        fontFamily: 'Archivo_700Bold',
+        color: '#32264D'
     },
     
     createAccount: {

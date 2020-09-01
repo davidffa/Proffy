@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Text, TouchableOpacity, TextInput, Alert, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import CheckBox from '@react-native-community/checkbox';
 import { RectButton } from 'react-native-gesture-handler';
+
+import { useAuth } from '../../contexts/auth';
+import { useNavigation } from '@react-navigation/native';
 
 import bgImage from '../../assets/images/backgrounds/loginBackground.png';
 import proffy from '../../assets/images/Proffy.png';
@@ -10,10 +14,10 @@ import eye from '../../assets/images/icons/eye.png';
 import eyeDivided from '../../assets/images/icons/eyeDivided.png';
 
 import styles from './styles';
-import { useAuth } from '../../contexts/auth';
 
 function Login() {
     const { signIn } = useAuth();
+    const { navigate } = useNavigation();
 
     const [remember, setRemember] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -46,11 +50,15 @@ function Login() {
     }
 
     function handleForgotPassword() {
-        //navigate to forgotpassword screen
+        navigate('ForgotPassword')
+    }
+
+    function handleRegister() {
+        navigate('Register');
     }
 
     return (
-        <KeyboardAvoidingView style={styles.container} behavior="padding">
+        <KeyboardAwareScrollView style={styles.container}>
             <View style={styles.background}>
                 <Image source={bgImage} style={styles.backgroundImage} />
                 <Image source={proffy} />
@@ -60,7 +68,7 @@ function Login() {
                 <View style={styles.formHeader}>
                     <Text style={styles.formTitle}>Fazer login</Text>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleRegister}>
                         <Text style={styles.createAccount}>Criar uma conta</Text>
                     </TouchableOpacity>
                 </View>
@@ -122,11 +130,11 @@ function Login() {
                     </TouchableOpacity>
                 </View>
 
-                <RectButton onPress={handleLogin} style={[styles.loginButton, valid ? {backgroundColor: '#04D361'} : {backgroundColor: '#DCDCE5'}]}>
+                <RectButton onPress={handleLogin} style={[styles.loginButton, valid ? {backgroundColor: '#04D361'} : {backgroundColor: '#DCDCE5'}]} enabled={valid}>
                     <Text style={[styles.loginButtonText, valid ? {color: '#FFF'} : {color: '#9C98A6'}]}>Entrar</Text>
                 </RectButton>
             </View>
-        </KeyboardAvoidingView>
+        </KeyboardAwareScrollView>
     )
 }
 
